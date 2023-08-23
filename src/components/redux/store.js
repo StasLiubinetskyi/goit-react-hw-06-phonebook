@@ -16,7 +16,6 @@ const persistConfig = {
   key: 'root',
   storage,
   version: 1,
-  blacklist: ['contacts'], // Додано поле, яке треба ігнорувати при persist
 };
 
 const persistedReducer = persistReducer(persistConfig, contactsReducer);
