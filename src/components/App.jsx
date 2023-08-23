@@ -17,13 +17,14 @@ const App = () => {
       name,
       number,
     };
-    if (!contacts) {
+    if (contacts.length === 0) {
       return null;
     }
 
     const isExistingContact = contacts.some(
       contact => contact.name.toLowerCase() === newContact.name.toLowerCase()
     );
+
     if (isExistingContact) {
       alert(`${newContact.name} is already in contacts.`);
     } else {
