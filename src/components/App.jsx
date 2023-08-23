@@ -1,4 +1,3 @@
-import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import ContactForm from './ContactForm/ContactForm';
 import ContactList from './ContactList/ContactList';
@@ -6,7 +5,7 @@ import Filter from './Filter/Filter';
 import { addContact, removeContact, setFilter } from './redux/contactsSlice';
 import { nanoid } from 'nanoid';
 
-const App = () => {
+export const App = () => {
   const contacts = useSelector(state => state.contacts.contacts);
   const filter = useSelector(state => state.contacts.filter);
   const dispatch = useDispatch();
@@ -65,5 +64,3 @@ const App = () => {
     </div>
   );
 };
-
-export default App;
