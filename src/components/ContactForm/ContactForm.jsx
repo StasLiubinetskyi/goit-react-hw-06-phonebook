@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import ContactFormStyled from './ContactFormStyled';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from '../redux/contactsSlice';
 import { nanoid } from 'nanoid';
+import { selectContacts } from '../redux/selectors'; // Додали імпорт
 
 const ContactForm = () => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
   const dispatch = useDispatch();
+  const contacts = useSelector(selectContacts); // Додали отримання списку контактів зі стору
 
   const handleNameChange = event => {
     setName(event.target.value);
@@ -26,6 +28,13 @@ const ContactForm = () => {
   const handleSubmit = event => {
     event.preventDefault();
     if (name.trim() !== '' && number.trim() !== '') {
+      const isDuplicate = contacts.some(contact => contact.name === name);
+
+      if (isDuplicate) {
+        alert('This contact already exists!');
+        return;
+      }
+
       const newContact = {
         id: nanoid(),
         name: name.trim(),
